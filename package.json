@@ -1,7 +1,7 @@
 {
 	"name": "php-devel-workflow",
 	"description": "A workflow for developing, testing and deploying PHP applications.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"keywords": ["php", "workflow", "development", "php workflow", "development workflow"],
 	"author": 
 	{

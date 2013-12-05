@@ -4,6 +4,7 @@
 This is my workflow for developing, testing and deploying PHP applications. It consists into setting up 3 different servers: the development server, the staging server and the production server.
 
 ##Changelog
+- v0.0.2 - added the workflow of staging server
 - v0.0.1 - initial release including only the workflow for the development server.
 
 ##Versioning
