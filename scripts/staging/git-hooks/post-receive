@@ -1,0 +1,26 @@
+APPLICATION_DIR="../_APPLICATION_DIR"
+CHOWN="_CHOWN"
+#IMPORT_DATABASE_COMMAND="_IMPORT_DATABASE_COMMAND"
+
+read oldrev newrev refname
+if [ $refname = "refs/heads/master" ]; then
+
+        echo "=== Deploying application to staging server ==="
+
+        #Fetching the repository
+        GIT_WORK_TREE=$APPLICATION_DIR git checkout -f
+
+        #Fixing the permissions
+        chown -R $CHOWN $APPLICATION_DIR
+
+        #Importing into the database
+        #if [ -a $APPLICATION_DIR/.database_dump ]
+        #then
+        #	echo "Importing .database_dump file to the database"
+        #	$IMPORT_DATABASE_COMMAND < $APPLICATION_DIR/.database_dump
+        #	rm -rf $APPLICATION_DIR/.database_dump
+        #fi
+
+        echo "=== Done ==="
+
+fi

@@ -1,0 +1,24 @@
+<VirtualHost *:PORT>
+        ServerName SERVERNAME
+	ServerAlias SERVERALIAS
+
+        DocumentRoot DOCROOT/httpdocs
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory DOCROOT>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ScriptAlias /fcgi-bin/ DOCROOT/fcgi-bin/
+        SuexecUserGroup USER
+
+        ErrorLog /tmp/apache2_SERVERNAME_error.log
+        LogLevel debug
+	CustomLog /tmp/apache2_SERVERNAME_access.log combined
+
+</VirtualHost>

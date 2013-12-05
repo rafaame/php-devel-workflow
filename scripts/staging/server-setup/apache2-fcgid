@@ -1,0 +1,11 @@
+AddType application/x-httpd-php .php
+
+AddHandler php-fcgi .php
+Action php-fcgi /fcgi-bin/php5-fcgi
+
+Alias /fcgi-bin/ /var/www/
+
+<Location /fcgi-bin/>
+        SetHandler fcgid-script
+        Options +ExecCGI
+</Location>
