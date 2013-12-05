@@ -24,7 +24,7 @@ confirm()
 }
 
 # Deploy the VirtualHost on apache
-confirm "This script works for Debian 7 and is going to install a LAMP server in this system with the following: Apache2, PHP 5.5 (from Dotdeb.org) and MySQL. The Apache and PHP integration will be made with mod_php (non-threaded). Are you sure? "
+confirm "This script works for Debian 7 and is going to install a Apache2 and PHP 5 (from Dotdeb.org) in this system. The Apache and PHP integration will be made with mod_php (non-threaded). Are you sure? "
 if [ $? != 0 ]
 then
 
@@ -44,11 +44,8 @@ then
     echo "Installing Apache2"
     apt-get install apache2 apache2-mpm-prefork
 
-    echo "Installing MySQL"
-    apt-get install mysql-server mysql-client mysql-common
-
-    echo "Installing PHP 5.5"
-    apt-get install php5 php5-mysql php5-curl php5-gd libapache2-mod-php5
+    echo "Installing PHP 5"
+    apt-get install php5 php5-curl php5-gd libapache2-mod-php5
 
     echo "Cleaning /var/www/"
     rm -rf /var/www/*
