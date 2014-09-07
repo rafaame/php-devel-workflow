@@ -6,7 +6,7 @@ then
     exit 0
 fi
 
-confirm() 
+confirm()
 {
 
     pass=0
@@ -88,6 +88,13 @@ then
 
     mkdir -p $vhostdir/$hostname/
     cp -R vhost-skel/* $vhostdir/$hostname/
+
+    awk_args="{
+        sub(/_SESSION_DIR/,\"$vhostdir/$hostname/tmp\");
+        print
+    }"
+
+    cat vhost-skel/fcgi-bin/php.ini | awk "$awk_args" > $vhostdir/$hostname/fcgi-bin/php.ini
 
     chown -R $vhostuser:$vhostuser $vhostdir/$hostname/
 

@@ -1,45 +1,23 @@
 #PHP Development Workflow
-##A workflow for developing, testing and deploying PHP applications.
+##Um workflow para desenvolver, testar e instalar aplicações PHP.
 
-This is my workflow for developing, testing and deploying PHP applications. It consists into setting up 3 different servers: the development server, the staging server and the production server.
+Este é o meu workflow para desenvolver, testar e instalar aplicações PHP. Ele consiste em subir 3 servidores diferentes: o servidor de desenvolvimento, o servidor de staging e o servidor de produção.
 
-##Changelog
-- v0.0.3 - now session.save_path is defined per virtual host php.ini
-- v0.0.2 - added the workflow of staging server
-- v0.0.1 - initial release including only the workflow for the development server.
+##O Workflow
 
-##Versioning
+O workflow consiste em desenvolver a aplicação na sua máquina e no **servidor de desenvolvimento**. Quando uma nova versão ou uma funcionalidade a qual você queira subir para a produção estiver pronta você deve subi-la ao **servidor de staging** (através de um commit ao repositório de staging - haverá um hook do git o qual tratará isso). Após ela ser testada e estiver rodando no **servidor de staging** você pode enviá-la ao servidor de produção sem (ou com um mínimo) downtime (através de um commit ao repositório de produção - haverá um hook do git o qual tratará isso).
 
-Font Awesome will be maintained under the Semantic Versioning guidelines as much as possible. Releases will be numbered with the following format:
+##Os scripts
 
-`<major>.<minor>.<patch>`
+Os scripts para subir os servidores e também os projetos estão separatos em /scripts/dev (para o **servidor de desenvolvimento**), /scripts/staging/ (for **staging server**) and /scripts/prod/ (for **production server**).
 
-And constructed with the following guidelines:
+O script setup-server.sh serve para instalar os pacotes necessários em um servidor **limpo**. O script setup-project.sh serve para criar um novo projeto no servidor (i.e. criar um novo virtual host com as configurações necessárias).
 
-* Breaking backward compatibility bumps the major (and resets the minor and patch)
-* New additions, without breaking backward compatibility bumps the minor (and resets the patch)
-* Bug fixes and misc changes bumps the patch
+OBS: estamos considerando Debian 7 para os servidores
 
-For more information on SemVer, please visit http://semver.org.
+##O servidor de desenvolvimento
 
-##Author
-- Email: eu@rafaa.me
-- GitHub: https://github.com/rafaame
-- Website: http://rafaa.me
-
-##The Workflow
-
-The workflow consisting into developing the application in your machine and the **development server**. When a new version or a functionality that you want to send to production is ready, you should deploy it to the **staging server** (by commiting to the staging repository - there will be a git hook to handle this). After it is tested and running in the **staging server** you may deploy it to the production server with minimal or no downtime (by commiting to the production repository - there will also be a git hook to handle this).
-
-##The scripts
-
-The scripts to setup the servers and also the projects are separated into /scripts/dev/ (for the **development server**), /scripts/staging/ (for **staging server**) and /scripts/prod/ (for **production server**).
-
-The setup-server.sh script is for installing the needed packages into a clean server. The setup-project.sh script is for setting up a new project into the server (i.e. create a new virtual host with needed config).
-
-OBS: we are considering Debian 7 for the servers
-
-##The Development Server
+Este será onde você irá frequentemente testar e ver se o seu código funciona. É, no meu caso, uma máquina virtual dentro do meu computador, mas pode estar em qualquer lugar
 
 This will be where you will be frequently testing to see if your code works. It is, in my case, a virtual machine inside my own PC, but it could be anywhere as long as you keep the latency very low because ou should maintain your development code synchronized with this server.
 

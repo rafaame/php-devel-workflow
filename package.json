@@ -1,15 +1,15 @@
 {
 	"name": "php-devel-workflow",
 	"description": "A workflow for developing, testing and deploying PHP applications.",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"keywords": ["php", "workflow", "development", "php workflow", "development workflow"],
-	"author": 
+	"author":
 	{
 	    "name": "Rafael Andreatta",
 	    "email": "eu@rafaa.me",
 	    "web": "http://rafaa.me/"
   	},
-  	"repository": 
+  	"repository":
   	{
 	    "type": "git",
 	    "url": "https://github.com/rafaame/php-devel-workflow.git"
