@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -u
+set -e
+
+APPLICATION_DIR="../_APPLICATION_DIR"
+CHOWN="_CHOWN"
+
+read oldrev newrev refname
+if [ $refname = "refs/heads/master" ]; then
+
+        echo "=== Deploying application to staging server ==="
+
+        cd "$APPLICATION_DIR"
+
+        #Fetching the repository
+        git --git-dir=./repository.git --work-tree=./  checkout -f
+
+        #Fetching submodules
+        cd "src"
+        rm -rf "common"
+        ln -s "../../common" "common"
+        cd ".."
+        #git --git-dir=./repository.git --work-tree=./ submodule update --init --recursive
+
+        echo "== Building =="
+        npm install
+        bower install
+        grunt build
+        grunt compile
+
+        #Checking for permissions
+        chown -R $CHOWN $APPLICATION_DIR  
+
+        echo "=== Done ==="
+
+fi

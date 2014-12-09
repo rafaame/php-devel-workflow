@@ -1,0 +1,80 @@
+<VirtualHost *:PORT>
+        ServerName SERVERNAME
+        ServerAlias SERVERALIAS
+
+        DocumentRoot DOCROOT/app/bin
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory DOCROOT/app>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ScriptAlias /fcgi-bin/ DOCROOT/fcgi-bin/
+        SuexecUserGroup USER
+        FcgidMaxRequestLen 5242800
+
+        ErrorLog DOCROOT/logs/error.log
+        CustomLog DOCROOT/logs/access.log combined
+        LogLevel debug
+
+</VirtualHost>
+
+<VirtualHost *:PORT>
+        ServerName admin.SERVERNAME
+
+        DocumentRoot DOCROOT/admin/bin
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory DOCROOT/admin>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ScriptAlias /fcgi-bin/ DOCROOT/fcgi-bin/
+        SuexecUserGroup USER
+        FcgidMaxRequestLen 5242800
+
+        ErrorLog DOCROOT/logs/error.log
+        CustomLog DOCROOT/logs/access.log combined
+        LogLevel debug
+
+</VirtualHost>
+
+<VirtualHost *:PORT>
+        ServerName api.SERVERNAME
+
+        DocumentRoot DOCROOT/api/httpdocs
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory DOCROOT/api>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ScriptAlias /fcgi-bin/ DOCROOT/fcgi-bin/
+        SuexecUserGroup USER
+        FcgidMaxRequestLen 5242800
+
+        ErrorLog DOCROOT/logs/error.log
+        CustomLog DOCROOT/logs/access.log combined
+        LogLevel debug
+
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Headers "Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name, Authorization"
+        Header set Access-Control-Allow-Methods "POST, GET, PUT, DELETE, OPTIONS"
+        Header set Access-Control-Allow-Credentials "true"
+
+</VirtualHost>

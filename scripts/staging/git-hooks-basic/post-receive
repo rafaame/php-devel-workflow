@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -u
+set -e
+
+APPLICATION_DIR="../_APPLICATION_DIR"
+CHOWN="_CHOWN"
+
+export GIT_WORK_TREE="$APPLICATION_DIR"
+
+read oldrev newrev refname
+if [ $refname = "refs/heads/master" ]; then
+
+        echo "=== Deploying application to staging server ==="
+
+        #Fetching the repository
+        git checkout -f
+
+        cd "$APPLICATION_DIR"
+        echo "== Updating database =="
+        _DATABASE_UPDATE_COMMAND
+
+        #Fixing the permissions
+        chown -R $CHOWN $APPLICATION_DIR
+
+        echo "=== Done ==="
+
+fi
